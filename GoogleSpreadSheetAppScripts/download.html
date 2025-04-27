@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <script type='text/javascript'>
+        function handleDownload() {
+            var downloadLink = document.getElementById("download");
+            downloadLink.removeEventListener("click", handleDownload);
+            document.getElementById("status").innerText = "コンバート中...";
+
+            google.script.run.withSuccessHandler(function (content) {
+                google.script.run.withSuccessHandler(function (sheetName) {
+                    var blob = new Blob([content], { "type": "application/json" });
+                    downloadLink.href = window.URL.createObjectURL(blob);
+                    downloadLink.download = sheetName + ".json";
+                    downloadLink.click();
+
+                    document.getElementById("status").innerText = "";
+                }).getSheetName();
+            }).make().finally(function () {
+                // リスナーを再度追加して二重クリックを防止
+                downloadLink.addEventListener("click", handleDownload);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById("download").addEventListener("click", handleDownload);
+        });
+    </script>
+</head>
+
+<body>
+    <a id="download" href="#">ダウンロード</a>
+    <p id="status"></p>
+</body>
+
+</html>
