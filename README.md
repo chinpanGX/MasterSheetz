@@ -1,2 +1,2 @@
-# GSMasterRepository
+# MasterSheetz
 マスターデータの基盤システム
