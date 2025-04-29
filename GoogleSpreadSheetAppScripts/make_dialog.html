@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-
 <head>
     <base target="_top">
     <script type='text/javascript'>
@@ -9,18 +8,17 @@
             downloadLink.removeEventListener("click", handleDownload);
             document.getElementById("status").innerText = "コンバート中...";
 
+            // JSONデータの取得とダウンロード処理
             google.script.run.withSuccessHandler(function (content) {
                 google.script.run.withSuccessHandler(function (sheetName) {
                     var blob = new Blob([content], { "type": "application/json" });
                     downloadLink.href = window.URL.createObjectURL(blob);
                     downloadLink.download = sheetName + ".json";
                     downloadLink.click();
-
                     document.getElementById("status").innerText = "";
                 }).getSheetName();
             }).make().finally(function () {
-                // リスナーを再度追加して二重クリックを防止
-                downloadLink.addEventListener("click", handleDownload);
+                downloadLink.addEventListener("click", handleDownload); // リスナーを再追加
             });
         }
 
@@ -29,10 +27,8 @@
         });
     </script>
 </head>
-
 <body>
     <a id="download" href="#">ダウンロード</a>
     <p id="status"></p>
 </body>
-
 </html>
