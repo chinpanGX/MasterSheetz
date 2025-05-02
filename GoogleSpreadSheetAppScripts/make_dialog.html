@@ -1,34 +1,75 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <base target="_top">
+    <style>
+        .download-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+    </style>
     <script type='text/javascript'>
-        function handleDownload() {
-            var downloadLink = document.getElementById("download");
-            downloadLink.removeEventListener("click", handleDownload);
+        function handleDownload(format) {
+            var downloadLink = document.getElementById(format + "-download");
+            downloadLink.removeEventListener("click", handleDownloadWrapper);
+
             document.getElementById("status").innerText = "コンバート中...";
 
-            // JSONデータの取得とダウンロード処理
-            google.script.run.withSuccessHandler(function (content) {
+            google.script.run.withSuccessHandler(function (data) {
                 google.script.run.withSuccessHandler(function (sheetName) {
-                    var blob = new Blob([content], { "type": "application/json" });
+                    var blob;
+                    var filename = sheetName + (format === "bytes" ? ".bytes" : ".json");
+
+                    if (format === "bytes") {
+                        var byteCharacters = atob(data);
+                        var byteNumbers = new Array(byteCharacters.length);
+                        for (var i = 0; i < byteCharacters.length; i++) {
+                            byteNumbers[i] = byteCharacters.charCodeAt(i);
+                        }
+                        var byteArray = new Uint8Array(byteNumbers);
+                        blob = new Blob([byteArray], { type: "application/octet-stream" });
+                    } else {
+                        blob = new Blob([data], { type: "application/json" });
+                    }
+
                     downloadLink.href = window.URL.createObjectURL(blob);
-                    downloadLink.download = sheetName + ".json";
+                    downloadLink.download = filename;
                     downloadLink.click();
                     document.getElementById("status").innerText = "";
                 }).getSheetName();
-            }).make().finally(function () {
-                downloadLink.addEventListener("click", handleDownload); // リスナーを再追加
+            }).make(format).finally(function () {
+                setTimeout(() => {
+                    downloadLink.addEventListener("click", handleDownloadWrapper);
+                }, 500);
             });
         }
 
+        function handleDownloadWrapper(event) {
+            var format = event.target.id.includes("json") ? "json" : "bytes";
+            handleDownload(format);
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById("download").addEventListener("click", handleDownload);
+            document.getElementById("json-download").addEventListener("click", handleDownloadWrapper);
+            document.getElementById("bytes-download").addEventListener("click", handleDownloadWrapper);
         });
     </script>
 </head>
+
 <body>
-    <a id="download" href="#">ダウンロード</a>
+    <div class="download-container">
+        <p class="description">
+            <strong>JSON:</strong> 入力データの出力結果を確認するためのテスト用です。<br>
+            <strong>bytes:</strong> Unityプロジェクトにコピーして使うマスターデータです。
+        </p>
+        <a id="json-download" href="#">JSONをダウンロードする</a>
+        <span></span>
+        <a id="bytes-download" href="#">bytesファイルをダウンロードする</a>
+    </div>
     <p id="status"></p>
 </body>
+
 </html>

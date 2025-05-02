@@ -14,12 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: MasterData
   m_GUID: e57538a15fa908946ab480bd194b7be7
-  m_SerializeEntries:
-  - m_GUID: 8ca56ff64d31a4446a2e40012e19ec49
-    m_Address: SampleCharacter
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 02f7832c9f2baea46b7fa7cbcaeaec86, type: 2}
   m_SchemaSet:
