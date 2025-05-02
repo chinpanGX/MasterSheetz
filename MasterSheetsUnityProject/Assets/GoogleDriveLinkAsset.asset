@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548921fa0797aa84e9acb4056273dd46, type: 3}
   m_Name: GoogleDriveLinkAsset
   m_EditorClassIdentifier: 
-  googleDriveLink: https://github.com/chinpanGX
+  googleDriveLink: 

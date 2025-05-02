@@ -23,6 +23,10 @@ namespace MasterData.Tests
                 Debug.Log(character.Type);
                 Debug.Log(character.Playable);
             }
+            
+            var sampleCharacterTable = repository.GetTable<SampleCharacterMasterDataTable>();
+            var data = sampleCharacterTable.GetById(1001);
+            var dataList = sampleCharacterTable.GetAll();
         } 
     }
 }

@@ -1,1 +1,1 @@
-{"root": [{"id": 1,"name": "Pika","type": 1,"playable": true},{"id": 2,"name": "Hito","type": 2,"playable": false},{"id": 3,"name": "Dane","type": 3,"playable": false}]}
+{"root":[{"id":1001,"name":"Pika","type":1,"playable":true},{"id":1002,"name":"Hito","type":2,"playable":false},{"id":1003,"name":"Dane","type":3,"playable":false}]}

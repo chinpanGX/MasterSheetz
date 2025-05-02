@@ -38,37 +38,37 @@ function make(format) {
     var maxRow = sheet.getLastRow();
     var maxColumn = sheet.getLastColumn();
 
-    var startRow = 2;
-    var keysRow = startRow;
-    var dataStartRow = startRow + 1;
+    var typeRow = 2; // 2行目にデータ型
+    var keysRow = 3; // 3行目に変数名
+    var dataStartRow = 4; // 4行目からデータ開始
 
     var keys = [];
-    var dataType = [];
+    var types = [];
     var jsonData = [];
     var ignoredColumns = [];
 
+    // キー名と型の処理
     for (var x = 1; x <= maxColumn; x++) {
-        var key = sheet.getRange(keysRow, x).getValue().toString();
-        if (key.toLowerCase() == "ignore") {
+        var type = sheet.getRange(typeRow, x).getValue().toString().toLowerCase(); // **型を取得**
+        var key = sheet.getRange(keysRow, x).getValue().toString(); // **キー名を取得**
+
+        if (key.toLowerCase() === "ignore") {
             ignoredColumns.push(x);
             continue;
         }
+
         keys.push(key.charAt(0).toLowerCase() + key.slice(1));
+        types.push(type); // **型をリストに追加**
     }
 
-    for (var x = 1; x <= maxColumn; x++) {
-        if (!ignoredColumns.includes(x)) {
-            dataType.push(sheet.getRange(keysRow, x).getValue().toString());
-        }
-    }
-
+    // データの処理
     for (var y = dataStartRow; y <= maxRow; y++) {
         var json = {};
         for (var x = 1; x <= maxColumn; x++) {
             if (!ignoredColumns.includes(x)) {
                 var data = sheet.getRange(y, x).getValue();
                 try {
-                    data = processDataByType(data, dataType[x - 1]);
+                    data = processDataByType(data, types[x - 1]);
                 } catch (error) {
                     Logger.log("エラー: " + error.message);
                     continue;
@@ -79,14 +79,15 @@ function make(format) {
         jsonData.push(json);
     }
 
-    var jsonString = FormatJson(jsonData);
-
-    // リクエストに応じて出力形式を変更
+    // `bytes`, `json`, `csharpTemplate` に応じた JSON 出力
     if (format === "bytes") {
+        var jsonString = JSON.stringify({ root: jsonData });
         var binaryData = Utilities.newBlob(jsonString, "application/octet-stream").getBytes();
-        return Utilities.base64Encode(binaryData);
-    } else { // JSON形式で出力
-        return jsonString;
+        return Utilities.base64Encode(binaryData); // **バイナリデータを Base64 でエンコード**
+    } else if (format === "csharpTemplate") {
+        return JSON.stringify({ fileName: sheet.getName(), types: types, columns: keys }, null, '\t');
+    } else {
+        return JSON.stringify({ fileName: sheet.getName(), types: types, columns: keys, root: jsonData }, null, '\t');
     }
 }
 
@@ -104,15 +105,4 @@ function processDataByType(data, type) {
         return !!data; // 数値や文字列をbooleanに変換
     }
     return data; // その他の型はそのまま返す
-}
-
-/**
- * JSONデータを整形する
- * @param {Array} jsonData JSONデータの配列
- * @returns {string} rootをつけて、改行とタブを削除したJSONデータ
- */
-function FormatJson(jsonData) {
-    // rootをつけて、jsonUtilityで読み込めるようにする
-    var formattedJson = JSON.stringify({ root: jsonData }, null, '\t');
-    return formattedJson.replace(/\n/g, "").replace(/\r/g, "").replace(/\t/g, "");
 }
