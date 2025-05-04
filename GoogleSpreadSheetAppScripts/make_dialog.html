@@ -8,11 +8,11 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 16px;
         }
     </style>
     <script type='text/javascript'>
         function handleDownload(format) {
+            console.log(format);
             var downloadLink = document.getElementById(format + "-download");
             downloadLink.removeEventListener("click", handleDownloadWrapper);
 
@@ -21,8 +21,7 @@
             google.script.run.withSuccessHandler(function (data) {
                 google.script.run.withSuccessHandler(function (sheetName) {
                     var blob;
-                    var filename = sheetName + (format === "bytes" ? ".bytes" : ".json");
-
+                    var filename = generateFilename(sheetName, format);
                     if (format === "bytes") {
                         var byteCharacters = atob(data);
                         var byteNumbers = new Array(byteCharacters.length);
@@ -48,13 +47,32 @@
         }
 
         function handleDownloadWrapper(event) {
-            var format = event.target.id.includes("json") ? "json" : "bytes";
+            var format;
+            if (event.target.id.includes("json")) {
+                format = "json";
+            } else if (event.target.id.includes("bytes")) {
+                format = "bytes";
+            } else if (event.target.id.includes("csharp")) {
+                format = "csharpTemplate";
+            }
             handleDownload(format);
+        }
+
+        // ファイル名の生成
+        function generateFilename(sheetName, format) {
+            if (format === "json") {
+                return "test_" + sheetName + ".json";
+            } else if (format === "bytes") {
+                return sheetName + ".bytes";
+            } else {
+                return sheetName + ".json";
+            }
         }
 
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById("json-download").addEventListener("click", handleDownloadWrapper);
             document.getElementById("bytes-download").addEventListener("click", handleDownloadWrapper);
+            document.getElementById("csharpTemplate-download").addEventListener("click", handleDownloadWrapper);
         });
     </script>
 </head>
@@ -63,11 +81,14 @@
     <div class="download-container">
         <p class="description">
             <strong>JSON:</strong> 入力データの出力結果を確認するためのテスト用です。<br>
-            <strong>bytes:</strong> Unityプロジェクトにコピーして使うマスターデータです。
+            <strong>bytes:</strong> Unityプロジェクトにコピーして使うマスターデータです。<br>
+            <strong>C# テンプレート:</strong> Unityで自動生成を行う C# クラスの定義データです。
         </p>
-        <a id="json-download" href="#">JSONをダウンロードする</a>
+        <a id="json-download" href="#">Test用JSONファイルをダウンロードする</a>
         <span></span>
         <a id="bytes-download" href="#">bytesファイルをダウンロードする</a>
+        <span></span>
+        <a id="csharpTemplate-download" href="#">C# テンプレートをダウンロードする</a>
     </div>
     <p id="status"></p>
 </body>

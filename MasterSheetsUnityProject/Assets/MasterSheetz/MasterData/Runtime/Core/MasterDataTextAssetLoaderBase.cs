@@ -24,20 +24,19 @@ namespace MasterData.Runtime.Core
         
         protected async UniTask LoadAndRegisterAsync<TMasterData>(
             string assetKey,
-            Func<IEnumerable<TMasterData>, MasterDataTableBase> createTable)
+            Func<IEnumerable<TMasterData>, MasterDataTableBase> createTableFactory)
             where TMasterData : IMasterData
         {
             var data = await LoadAsync<TMasterData>(assetKey);
-            var table = createTable(data);
+            var table = createTableFactory(data);
             Tables.Add(table);
         }
-        
         
         private async UniTask<T[]> LoadAsync<T>(string masterDataAssetKey)
         {
             var handle = Addressables.LoadAssetAsync<TextAsset>(masterDataAssetKey);
             await handle.ToUniTask();
-            if (!handle.Result.text.StartsWith("{\"root\":"))
+            if (!handle.Result.text.Contains("root"))
             {
                 throw new MasterDataException("Invalid master data format.");
             }
