@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MasterData.Runtime.Core
+namespace MasterData.Runtime
 {
     public class MasterDataException : Exception
     {

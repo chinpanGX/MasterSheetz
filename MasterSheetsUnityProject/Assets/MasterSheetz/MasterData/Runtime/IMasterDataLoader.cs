@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using MasterData.Runtime.Domain;
 
-namespace MasterData.Runtime.Core
+namespace MasterData.Runtime
 {
     public interface IMasterDataLoader
     { 

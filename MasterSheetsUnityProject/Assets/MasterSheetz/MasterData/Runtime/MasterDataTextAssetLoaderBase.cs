@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using MasterData.Runtime.Domain;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace MasterData.Runtime.Core
+namespace MasterData.Runtime
 {
     public abstract class MasterDataTextAssetLoaderBase
     {
@@ -41,8 +40,7 @@ namespace MasterData.Runtime.Core
                 throw new MasterDataException("Invalid master data format.");
             }
             handles.Add(handle);
-            var jsonString = System.Text.Encoding.UTF8.GetString(handle.Result.bytes);
-            var master = JsonUtility.FromJson<MasterDataElement<T>>(jsonString);
+            var master = JsonUtility.FromJson<MasterDataElement<T>>(handle.Result.text);
             return master.root;
         }
         

@@ -1,4 +1,4 @@
-namespace MasterData.Runtime.Domain
+namespace MasterData.Runtime
 {
     public interface IMasterData
     {

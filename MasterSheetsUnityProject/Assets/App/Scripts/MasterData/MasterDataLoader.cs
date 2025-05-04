@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using MasterData.Runtime.Core;
-using MasterData.Runtime.Domain;
 using App.MasterData;
+using Cysharp.Threading.Tasks;
+using MasterData.Runtime;
 
 public class MasterDataLoader : MasterDataTextAssetLoaderBase, IMasterDataLoader
 {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MasterData.Runtime.Domain
+namespace MasterData.Runtime
 {
     public abstract class MasterDataTableBase
     {

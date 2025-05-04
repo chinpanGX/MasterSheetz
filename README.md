@@ -38,7 +38,7 @@ __以下の手順で進んでください。__
 5. 続行をクリック
 6. "マスタデータをダウンロード"というダイアログが表示される
 
-![alt text](docs/{13EDA11C-A496-4F84-8076-665A32B9BB34}.png)
+![alt text](docs/{7F557CD7-97CC-43D8-89A4-59F2872EDBA4}.png)
 
 ## データ入力について
 1. 1行目は __"カラムに対してのコメント"__ を記載できます。makeをする際に無視されます。
@@ -52,12 +52,46 @@ __以下の手順で進んでください。__
 [マスタデータのサンプル](https://docs.google.com/spreadsheets/d/e/2PACX-1vTGAtbQ8Q2sIzgk-BoAc0drG9_zG23Z1e25A6KYnTPiecpJOkRkQ_YNkbt0Ku1HzP3eXLfCz8lvEkeS/pubhtml)
 
 ## makeでダウンロードするファイルの中身について
+### リリース
+
+Unityにコピーして、ランタイムで利用するマスタデータが格納されたJsonファイルです。
+
+以下は、JSONの中身です。
+```
+{"root":[{"id":1001,"name":"Pika","type":1,"playable":true},{"id":1002,"name":"Hito","type":2,"playable":false},{"id":1003,"name":"Dane","type":3,"playable":false}]}
+```
+
+### C# MakeFile
+
+UnityでマスタデータのC#クラスを自動生成する際に利用するJSONファイルです。
+
+以下は、JSONの中身です。
+```
+{
+	"className": "SampleCharacter",
+	"types": [
+		"int",
+		"string",
+		"int",
+		"bool"
+	],
+	"columns": [
+		"id",
+		"name",
+		"type",
+		"playable"
+	]
+}
+```
+
 ### Test用のJSON
 
-入力されたデータの確認ができます。以下は、Test用のJSONの出力結果です。
+入力されたデータの確認ができます。
+
+以下は、JSONの中身です。
 ```
 {
-	"fileName": "SampleCharacter",
+	"className": "SampleCharacter",
 	"types": [
 		"int",
 		"string",
@@ -93,54 +127,6 @@ __以下の手順で進んでください。__
 }
 ```
 
-### bytesファイル
-
-Unityにコピーするマスタデータの成果物です。以下の"root"のデータがバイナリフォーマットで入っています。
-```
-{
-	"root": [
-		{
-			"id": 1001,
-			"name": "Pika",
-			"type": 1,
-			"playable": true
-		},
-		{
-			"id": 1002,
-			"name": "Hito",
-			"type": 2,
-			"playable": false
-		},
-		{
-			"id": 1003,
-			"name": "Dane",
-			"type": 3,
-			"playable": false
-		}
-	]
-}
-```
-
-### C#のテンプレート
-
-UnityでマスタデータのC#クラスを自動生成する際に利用するJSONファイルです。JSONの内容は以下のようになっています。
-```
-{
-	"fileName": "SampleCharacter",
-	"types": [
-		"int",
-		"string",
-		"int",
-		"bool"
-	],
-	"columns": [
-		"id",
-		"name",
-		"type",
-		"playable"
-	]
-}
-```
 # Unity
 
 ## セットアップ
@@ -178,8 +164,9 @@ ProjectWindowでCSharpGenerateConfigAsset選択状態にします。
 
 CSharpGenerateConfigAssetには、以下の内容を設定します。
 ![alt text](docs/{2D870B3D-C7BD-40C5-978E-AE5BD29CC479}.png)
+フォルダのパスは```Assets```から指定をしてください。
 
-__Generate MasterData C# Classes__ を実行すると, ```OutputFolderPath```内にC#クラスを生成します。
+__Generate MasterData C# Classes__ を実行すると、 ```OutputFolderPath```内にC#クラスを生成します。
 
 > [!CAUTION]
 > 実行する際に、すでに存在するファイルをすべて削除したうえで、Jsonの定義に基づいて再生成します。
@@ -213,9 +200,9 @@ await repository.LoadAsync();
 ## データの取得
 テーブルの取得はMasterDataRepositoryの```GetTable()```を利用してください。
 
-テーブルからのデータ取得は、```GetById(int id)```, ```GetAll()```を```MasterDataTable```クラスが実装しています。
+テーブルからのデータ取得は、```GetById(int id)```、 ```GetAll()```を```MasterDataTable```クラスが実装しています。
 
-以下は,サンプルです。
+以下は、サンプルです。
 ```
 var sampleCharacterTable = repository.GetTable<SampleCharacterMasterDataTable>();
 var data = sampleCharacterTable.GetById(1001);
@@ -225,7 +212,7 @@ var dataList = sampleCharacterTable.GetAll();
 > [!NOTE]
 > 自動生成されるTableクラスはpartialになっているので、容易に拡張機能を実装することができます。
 
-以下は,拡張機能のサンプルです。
+以下は、拡張機能のサンプルです。
 ```
 // typeをEnumで取得する
 public static class SampleCharacterExtension

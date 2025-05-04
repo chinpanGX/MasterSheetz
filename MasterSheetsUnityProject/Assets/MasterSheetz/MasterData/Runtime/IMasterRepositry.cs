@@ -1,7 +1,6 @@
-using System;
 using Cysharp.Threading.Tasks;
 
-namespace MasterData.Runtime.Domain
+namespace MasterData.Runtime
 {
     public interface IMasterRepository
     {

@@ -20,20 +20,8 @@
 
             google.script.run.withSuccessHandler(function (data) {
                 google.script.run.withSuccessHandler(function (sheetName) {
-                    var blob;
                     var filename = generateFilename(sheetName, format);
-                    if (format === "bytes") {
-                        var byteCharacters = atob(data);
-                        var byteNumbers = new Array(byteCharacters.length);
-                        for (var i = 0; i < byteCharacters.length; i++) {
-                            byteNumbers[i] = byteCharacters.charCodeAt(i);
-                        }
-                        var byteArray = new Uint8Array(byteNumbers);
-                        blob = new Blob([byteArray], { type: "application/octet-stream" });
-                    } else {
-                        blob = new Blob([data], { type: "application/json" });
-                    }
-
+                    var blob = new Blob([data], { type: "application/json" });
                     downloadLink.href = window.URL.createObjectURL(blob);
                     downloadLink.download = filename;
                     downloadLink.click();
@@ -48,31 +36,31 @@
 
         function handleDownloadWrapper(event) {
             var format;
-            if (event.target.id.includes("json")) {
-                format = "json";
-            } else if (event.target.id.includes("bytes")) {
-                format = "bytes";
-            } else if (event.target.id.includes("csharp")) {
-                format = "csharpTemplate";
+            if (event.target.id.includes("testJson")) {
+                format = "testJson";
+            } else if (event.target.id.includes("release")) {
+                format = "release";
+            } else if (event.target.id.includes("csharpMakefile")) {
+                format = "csharpMakefile";
             }
             handleDownload(format);
         }
 
         // ファイル名の生成
         function generateFilename(sheetName, format) {
-            if (format === "json") {
+            if (format === "testJson") {
                 return "test_" + sheetName + ".json";
-            } else if (format === "bytes") {
-                return sheetName + ".bytes";
+            } else if (format === "csharpMakefile") {
+                return "CSharpMakefile_" + sheetName + ".json";
             } else {
                 return sheetName + ".json";
             }
         }
 
         document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById("json-download").addEventListener("click", handleDownloadWrapper);
-            document.getElementById("bytes-download").addEventListener("click", handleDownloadWrapper);
-            document.getElementById("csharpTemplate-download").addEventListener("click", handleDownloadWrapper);
+            document.getElementById("testJson-download").addEventListener("click", handleDownloadWrapper);
+            document.getElementById("release-download").addEventListener("click", handleDownloadWrapper);
+            document.getElementById("csharpMakefile-download").addEventListener("click", handleDownloadWrapper);
         });
     </script>
 </head>
@@ -80,15 +68,15 @@
 <body>
     <div class="download-container">
         <p class="description">
-            <strong>JSON:</strong> 入力データの出力結果を確認するためのテスト用です。<br>
-            <strong>bytes:</strong> Unityプロジェクトにコピーして使うマスターデータです。<br>
-            <strong>C# テンプレート:</strong> Unityで自動生成を行う C# クラスの定義データです。
+            <strong>リリース:</strong> Unityプロジェクトにコピーして使うマスターデータです。<br>
+            <strong>C# Makefile </strong> Unityで自動生成を行う C# クラスの定義データです。<br>
+            <strong>Test用JSON:</strong> 入力データの出力結果を確認するためのテスト用です。<br>
         </p>
-        <a id="json-download" href="#">Test用JSONファイルをダウンロードする</a>
+        <a id="release-download" href="#">リリース用のファイルをダウンロードする</a>
         <span></span>
-        <a id="bytes-download" href="#">bytesファイルをダウンロードする</a>
+        <a id="csharpMakefile-download" href="#">C# MakeFileをダウンロードする</a>
         <span></span>
-        <a id="csharpTemplate-download" href="#">C# テンプレートをダウンロードする</a>
+        <a id="testJson-download" href="#">Test用JSONファイルをダウンロードする</a>
     </div>
     <p id="status"></p>
 </body>
