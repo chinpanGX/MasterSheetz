@@ -11,6 +11,9 @@ public class MasterDataLoader : MasterDataTextAssetLoaderBase, IMasterDataLoader
         await UniTask.WhenAll(
             LoadAndRegisterAsync<SampleCharacter>(nameof(SampleCharacter),
                 data => new SampleCharacterMasterDataTable(data)
+            ),
+            LoadAndRegisterAsync<Localization>("LocalizationMaster",
+                data => new LocalizationMasterDataTable(data)
             )
         );
         return Tables;

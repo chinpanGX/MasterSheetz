@@ -1,0 +1,9 @@
+﻿* text=auto eol=lf
+
+*.cs linguist-language=C#
+*.meta linguist-generated=true
+*.unity linguist-generated=true
+*.asset linguist-generated=true
+*.shader linguist-vendored=true
+
+MasterSheetsUnityProject/Assets/Template/* linguist-generated=true
