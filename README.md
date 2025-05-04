@@ -47,7 +47,7 @@ __以下の手順で進んでください。__
 4. 4行目以降は、データを追加してください。
 
 > [!NOTE]
-> __"ignore"__のカラムをを追加すると、__データに対してのコメント__ を記載できます。makeをする際に無視されます。
+> __"ignore"__ のカラムをを追加すると、__データに対してのコメント__ を記載できます。makeをする際に無視されます。
 
 [マスタデータのサンプル](https://docs.google.com/spreadsheets/d/e/2PACX-1vTGAtbQ8Q2sIzgk-BoAc0drG9_zG23Z1e25A6KYnTPiecpJOkRkQ_YNkbt0Ku1HzP3eXLfCz8lvEkeS/pubhtml)
 
@@ -218,7 +218,7 @@ var data = sampleCharacterTable.GetById(1001);
 var dataList = sampleCharacterTable.GetAll();
 ```
 
-[!NOTE]
+> [!NOTE]
 > 自動生成されるTableクラスはpartialになっているので、容易に拡張機能を実装することができます。
 
 以下は、拡張機能のサンプルです。
