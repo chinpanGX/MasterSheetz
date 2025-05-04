@@ -6,8 +6,7 @@
         "UnityEditor.TestRunner",
         "UniTask",
         "App.MasterData",
-        "MasterData.Runtime.Domain",
-        "MasterData.Runtime.Core"
+        "MasterData.Runtime"
     ],
     "includePlatforms": [
         "Editor"

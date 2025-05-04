@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using MasterData.Runtime.Domain;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace MasterData.Runtime.Core
+namespace MasterData.Runtime
 {
     public abstract class MasterDataTextAssetLoaderBase
     {

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using App.MasterData;
-using MasterData.Runtime.Core;
+using MasterData.Runtime;
 using NUnit.Framework;
 using UnityEngine;
 

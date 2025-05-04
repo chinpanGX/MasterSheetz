@@ -1,7 +1,7 @@
 using System.Linq;
 using App.MasterData;
 using Cysharp.Threading.Tasks;
-using MasterData.Runtime.Core;
+using MasterData.Runtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

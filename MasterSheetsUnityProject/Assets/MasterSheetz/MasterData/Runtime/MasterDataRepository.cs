@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using MasterData.Runtime.Domain;
 
-namespace MasterData.Runtime.Core
+namespace MasterData.Runtime
 {
     public class MasterDataRepository : IMasterRepository
     {

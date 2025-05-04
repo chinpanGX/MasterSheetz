@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace App.MasterData
 {
     public static class LocalizationMasterExtension

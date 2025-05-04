@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using MasterData.Runtime.Domain;
 
 namespace App.MasterData
 {
@@ -12,11 +11,11 @@ namespace App.MasterData
         }
     }
     
-    public partial class SampleCharacterMasterDataTable : MasterDataTable<SampleCharacter>
+    public partial class SampleCharacterMasterDataTable
     {
         public List<SampleCharacter> GetByType(SampleCharacterType type)
         {
-            var data = GetAll();
+            var data = GetAll().ToList();
             return data.Where(x => x.Type == (int)type).ToList();
         }
     }
