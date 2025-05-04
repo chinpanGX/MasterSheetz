@@ -47,7 +47,7 @@ __以下の手順で進んでください。__
 4. 4行目以降は、データを追加してください。
 
 > [!NOTE]
-> __"ignore"__ のカラムをを追加すると、__データに対してのコメント__ を記載できます。makeをする際に無視されます。
+> __"ignore"__ のカラムをを追加すると、__"データに対してのコメント"__ を記載できます。makeをする際に無視されます。
 
 [マスタデータのサンプル](https://docs.google.com/spreadsheets/d/e/2PACX-1vTGAtbQ8Q2sIzgk-BoAc0drG9_zG23Z1e25A6KYnTPiecpJOkRkQ_YNkbt0Ku1HzP3eXLfCz8lvEkeS/pubhtml)
 
@@ -97,6 +97,7 @@ __以下の手順で進んでください。__
 
 Unityにコピーするマスタデータの成果物です。以下の"root"のデータがバイナリフォーマットで入っています。
 ```
+{
 	"root": [
 		{
 			"id": 1001,
@@ -117,6 +118,7 @@ Unityにコピーするマスタデータの成果物です。以下の"root"の
 			"playable": false
 		}
 	]
+}
 ```
 
 ### C#のテンプレート
@@ -147,7 +149,7 @@ UnityでマスタデータのC#クラスを自動生成する際に利用するJ
 
 PackageManager > Add package from git URL...から追加
 ```
-
+https://github.com/chinpanGX/MasterSheetz.git?path=MasterSheetsUnityProject/Assets/MasterSheetz/MasterData
 ```
 
 ## エディタメニュー
@@ -177,7 +179,7 @@ ProjectWindowでCSharpGenerateConfigAsset選択状態にします。
 CSharpGenerateConfigAssetには、以下の内容を設定します。
 ![alt text](docs/{2D870B3D-C7BD-40C5-978E-AE5BD29CC479}.png)
 
-__Generate MasterData C# Classes__を実行すると, ```OutputFolderPath```内にC#クラスを生成します。
+__Generate MasterData C# Classes__ を実行すると, ```OutputFolderPath```内にC#クラスを生成します。
 
 > [!CAUTION]
 > 実行する際に、すでに存在するファイルをすべて削除したうえで、Jsonの定義に基づいて再生成します。
@@ -210,8 +212,10 @@ await repository.LoadAsync();
 
 ## データの取得
 テーブルの取得はMasterDataRepositoryの```GetTable()```を利用してください。
+
 テーブルからのデータ取得は、```GetById(int id)```, ```GetAll()```を```MasterDataTable```クラスが実装しています。
-以下のはサンプルです。
+
+以下は,サンプルです。
 ```
 var sampleCharacterTable = repository.GetTable<SampleCharacterMasterDataTable>();
 var data = sampleCharacterTable.GetById(1001);
@@ -221,7 +225,7 @@ var dataList = sampleCharacterTable.GetAll();
 > [!NOTE]
 > 自動生成されるTableクラスはpartialになっているので、容易に拡張機能を実装することができます。
 
-以下は、拡張機能のサンプルです。
+以下は,拡張機能のサンプルです。
 ```
 // typeをEnumで取得する
 public static class SampleCharacterExtension
@@ -245,3 +249,5 @@ public partial class SampleCharacterMasterDataTable : MasterDataTable<SampleChar
 
 # ライセンス
 本ソフトウェアはMITライセンスで公開しています。
+
+https://github.com/chinpanGX/MasterSheetz/blob/main/LICENSE
