@@ -41,8 +41,7 @@ namespace MasterData.Runtime.Core
                 throw new MasterDataException("Invalid master data format.");
             }
             handles.Add(handle);
-            var jsonString = System.Text.Encoding.UTF8.GetString(handle.Result.bytes);
-            var master = JsonUtility.FromJson<MasterDataElement<T>>(jsonString);
+            var master = JsonUtility.FromJson<MasterDataElement<T>>(handle.Result.text);
             return master.root;
         }
         

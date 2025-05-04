@@ -79,15 +79,12 @@ function make(format) {
         jsonData.push(json);
     }
 
-    // `bytes`, `json`, `csharpTemplate` に応じた JSON 出力
-    if (format === "bytes") {
-        var jsonString = JSON.stringify({ root: jsonData });
-        var binaryData = Utilities.newBlob(jsonString, "application/octet-stream").getBytes();
-        return Utilities.base64Encode(binaryData); // **バイナリデータを Base64 でエンコード**
-    } else if (format === "csharpTemplate") {
-        return JSON.stringify({ fileName: sheet.getName(), types: types, columns: keys }, null, '\t');
+    if (format === "release") {
+        return JSON.stringify({ root: jsonData });
+    } else if (format === "csharpMakefile") {
+        return JSON.stringify({ className: sheet.getName(), types: types, columns: keys }, null, '\t');
     } else {
-        return JSON.stringify({ fileName: sheet.getName(), types: types, columns: keys, root: jsonData }, null, '\t');
+        return JSON.stringify({ className: sheet.getName(), types: types, columns: keys, root: jsonData }, null, '\t');
     }
 }
 

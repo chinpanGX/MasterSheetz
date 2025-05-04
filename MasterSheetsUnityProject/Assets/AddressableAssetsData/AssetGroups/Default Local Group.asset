@@ -15,13 +15,13 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: e4a4c4972ffae7c43a91ce99dac2a525
   m_SerializeEntries:
-  - m_GUID: 71a72d255ce249c4994c922c355b5ca2
-    m_Address: SampleCharacter
+  - m_GUID: 867fe159a79b3c2408098bbcc0c5deaf
+    m_Address: LocalizationMaster
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a8c1fd2ef39d7024f956463efbc4d202
-    m_Address: LocalizationMaster
+  - m_GUID: c57deb8a1e1d7904fa58f8fd39bf84c1
+    m_Address: SampleCharacter
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
