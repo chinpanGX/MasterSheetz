@@ -54,14 +54,18 @@ __以下の手順で進んでください。__
 ## makeでダウンロードするファイルの中身について
 ### リリース
 
-Unityにコピーして、ランタイムで利用するマスタデータが格納されたJsonファイルです。以下は、JSONの中身です。
+Unityにコピーして、ランタイムで利用するマスタデータが格納されたJsonファイルです。
+
+以下は、JSONの中身です。
 ```
 {"root":[{"id":1001,"name":"Pika","type":1,"playable":true},{"id":1002,"name":"Hito","type":2,"playable":false},{"id":1003,"name":"Dane","type":3,"playable":false}]}
 ```
 
 ### C# MakeFile
 
-UnityでマスタデータのC#クラスを自動生成する際に利用するJSONファイルです。以下は、JSONの中身です。
+UnityでマスタデータのC#クラスを自動生成する際に利用するJSONファイルです。
+
+以下は、JSONの中身です。
 ```
 {
 	"className": "SampleCharacter",
@@ -82,7 +86,9 @@ UnityでマスタデータのC#クラスを自動生成する際に利用するJ
 
 ### Test用のJSON
 
-入力されたデータの確認ができます。以下は、JSONの中身です。
+入力されたデータの確認ができます。
+
+以下は、JSONの中身です。
 ```
 {
 	"className": "SampleCharacter",
@@ -158,8 +164,9 @@ ProjectWindowでCSharpGenerateConfigAsset選択状態にします。
 
 CSharpGenerateConfigAssetには、以下の内容を設定します。
 ![alt text](docs/{2D870B3D-C7BD-40C5-978E-AE5BD29CC479}.png)
+フォルダのパスは```Assets```から指定をしてください。
 
-__Generate MasterData C# Classes__ を実行すると, ```OutputFolderPath```内にC#クラスを生成します。
+__Generate MasterData C# Classes__ を実行すると、 ```OutputFolderPath```内にC#クラスを生成します。
 
 > [!CAUTION]
 > 実行する際に、すでに存在するファイルをすべて削除したうえで、Jsonの定義に基づいて再生成します。
@@ -193,9 +200,9 @@ await repository.LoadAsync();
 ## データの取得
 テーブルの取得はMasterDataRepositoryの```GetTable()```を利用してください。
 
-テーブルからのデータ取得は、```GetById(int id)```, ```GetAll()```を```MasterDataTable```クラスが実装しています。
+テーブルからのデータ取得は、```GetById(int id)```、 ```GetAll()```を```MasterDataTable```クラスが実装しています。
 
-以下は,サンプルです。
+以下は、サンプルです。
 ```
 var sampleCharacterTable = repository.GetTable<SampleCharacterMasterDataTable>();
 var data = sampleCharacterTable.GetById(1001);
@@ -205,7 +212,7 @@ var dataList = sampleCharacterTable.GetAll();
 > [!NOTE]
 > 自動生成されるTableクラスはpartialになっているので、容易に拡張機能を実装することができます。
 
-以下は,拡張機能のサンプルです。
+以下は、拡張機能のサンプルです。
 ```
 // typeをEnumで取得する
 public static class SampleCharacterExtension
