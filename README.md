@@ -177,7 +177,7 @@ __Generate MasterData C# Classes__ を実行すると、 ```OutputFolderPath```�
 
 以下は、サンプルです。
 ```
-// bytesファイルは、"SampleCharacter"をキーにして、Addressablesに登録をしています。
+// マスタデータのJSONファイルは、"SampleCharacter"をキーにして、Addressablesに登録をしています。
 
 public class MasterDataLoader : MasterDataTextAssetLoaderBase, IMasterDataLoader
 {
