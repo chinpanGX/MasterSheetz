@@ -1,9 +1,9 @@
 # MasterSheetz
-マスターデータの基盤システム
+[![license](https://img.shields.io/badge/LICENSE-MIT-green.svg)](LICENSE.md)
 
 ## 概要
 
-マスタデータの定義　-> Unityに組み込む -> ランタイムで利用するまでのフローを高速に、簡単に行うことを目指したライブラリです。
+マスタデータの定義　-> Unityに組み込む -> ランタイムで利用するまでのフローを高速に、簡単に行うことを目指したマスターデータの基盤システムです。
 
 入力したデータの変換をするGoogleSpreadSheetのスクリプト、マスタデータの利用するUnity用のパッケージを提供しています。
 
