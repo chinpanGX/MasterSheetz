@@ -35,19 +35,19 @@ namespace MasterData.Runtime
         {
             var handle = Addressables.LoadAssetAsync<TextAsset>(masterDataAssetKey);
             await handle.ToUniTask();
-            if (!handle.Result.text.Contains("root"))
+            if (!handle.Result.text.Contains("data"))
             {
                 throw new MasterDataException("Invalid master data format.");
             }
             handles.Add(handle);
             var master = JsonUtility.FromJson<MasterDataElement<T>>(handle.Result.text);
-            return master.root;
+            return master.data;
         }
         
         [Serializable]
         private class MasterDataElement<T>
         {
-            public T[] root;
+            public T[] data;
         }
     }
 }
