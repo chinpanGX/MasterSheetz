@@ -58,7 +58,7 @@ Unityにコピーして、ランタイムで利用するマスタデータが格
 
 以下は、JSONの中身です。
 ```
-{"root":[{"id":1001,"name":"Pika","type":1,"playable":true},{"id":1002,"name":"Hito","type":2,"playable":false},{"id":1003,"name":"Dane","type":3,"playable":false}]}
+{"data":[{"id":1001,"name":"Pika","type":1,"playable":true},{"id":1002,"name":"Hito","type":2,"playable":false},{"id":1003,"name":"Dane","type":3,"playable":false}]}
 ```
 
 ### C# MakeFile
@@ -104,7 +104,7 @@ UnityでマスタデータのC#クラスを自動生成する際に利用するJ
 		"type",
 		"playable"
 	],
-	"root": [
+	"data": [
 		{
 			"id": 1001,
 			"name": "Pika",

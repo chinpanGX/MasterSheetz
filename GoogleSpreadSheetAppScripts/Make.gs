@@ -80,11 +80,11 @@ function make(format) {
     }
 
     if (format === "release") {
-        return JSON.stringify({ root: jsonData });
+        return JSON.stringify({ data: jsonData });
     } else if (format === "csharpMakefile") {
         return JSON.stringify({ className: sheet.getName(), types: types, columns: keys }, null, '\t');
     } else {
-        return JSON.stringify({ className: sheet.getName(), types: types, columns: keys, root: jsonData }, null, '\t');
+        return JSON.stringify({ className: sheet.getName(), types: types, columns: keys, data: jsonData }, null, '\t');
     }
 }
 
