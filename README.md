@@ -135,7 +135,7 @@ UnityでマスタデータのC#クラスを自動生成する際に利用するJ
 
 PackageManager > Add package from git URL...から追加
 ```
-https://github.com/chinpanGX/MasterSheetz.git?path=MasterSheetsUnityProject/Assets/MasterSheetz/MasterData
+https://github.com/chinpanGX/MasterSheetz.git?path=MasterSheetsUnityProject/Assets/MasterSheetz
 ```
 
 ## エディタメニュー
