@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using MasterData.Runtime;
+using MasterSheetz.Runtime;
 
 namespace App.MasterData
 {
     [Serializable]
-    public class Localization : IMasterData
+    public class LocalizationData : IMasterData
     {
         [SerializeField] private int id;
         [SerializeField] private string key;
@@ -19,8 +19,8 @@ namespace App.MasterData
         public string En => en;
     }
 
-    public partial class LocalizationMasterDataTable : MasterDataTable<Localization>
+    public partial class LocalizationMasterDataTable : MasterDataTable<LocalizationData>
     {
-        public LocalizationMasterDataTable(IEnumerable<Localization> masterData) : base(masterData) { }
+        public LocalizationMasterDataTable(IEnumerable<LocalizationData> masterData) : base(masterData) { }
     }
 }

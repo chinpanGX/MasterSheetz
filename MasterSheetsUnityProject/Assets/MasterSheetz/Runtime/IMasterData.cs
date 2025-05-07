@@ -1,4 +1,4 @@
-namespace MasterData.Runtime
+namespace MasterSheetz.Runtime
 {
     public interface IMasterData
     {

@@ -2,7 +2,7 @@ namespace App.MasterData
 {
     public static class LocalizationMasterExtension
     {
-        public static string GetLocalizedString(this Localization localization, string language)
+        public static string GetLocalizedString(this LocalizationData localization, string language)
         {
             switch (language)
             {

@@ -5,7 +5,7 @@ namespace App.MasterData
 {
     public static class SampleCharacterExtension
     {
-        public static SampleCharacterType GetType(this SampleCharacter character)
+        public static SampleCharacterType GetType(this SampleCharacterData character)
         {
             return (SampleCharacterType)character.Type;
         }
@@ -13,7 +13,7 @@ namespace App.MasterData
     
     public partial class SampleCharacterMasterDataTable
     {
-        public List<SampleCharacter> GetByType(SampleCharacterType type)
+        public List<SampleCharacterData> GetByType(SampleCharacterType type)
         {
             var data = GetAll().ToList();
             return data.Where(x => x.Type == (int)type).ToList();

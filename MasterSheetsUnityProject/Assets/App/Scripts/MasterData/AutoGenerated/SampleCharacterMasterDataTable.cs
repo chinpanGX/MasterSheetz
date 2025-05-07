@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using MasterData.Runtime;
+using MasterSheetz.Runtime;
 
 namespace App.MasterData
 {
     [Serializable]
-    public class SampleCharacter : IMasterData
+    public class SampleCharacterData : IMasterData
     {
         [SerializeField] private int id;
         [SerializeField] private string name;
@@ -19,8 +19,8 @@ namespace App.MasterData
         public bool Playable => playable;
     }
 
-    public partial class SampleCharacterMasterDataTable : MasterDataTable<SampleCharacter>
+    public partial class SampleCharacterMasterDataTable : MasterDataTable<SampleCharacterData>
     {
-        public SampleCharacterMasterDataTable(IEnumerable<SampleCharacter> masterData) : base(masterData) { }
+        public SampleCharacterMasterDataTable(IEnumerable<SampleCharacterData> masterData) : base(masterData) { }
     }
 }

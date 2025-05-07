@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using App.MasterData;
 using Cysharp.Threading.Tasks;
-using MasterData.Runtime;
+using MasterSheetz.Runtime;
 
 public class MasterDataLoader : MasterDataTextAssetLoaderBase, IMasterDataLoader
 {
     public async UniTask<List<MasterDataTableBase>> LoadAll()
     {
         await UniTask.WhenAll(
-            LoadAndRegisterAsync<SampleCharacter>(nameof(SampleCharacter),
+            LoadAndRegisterAsync<SampleCharacterData>("SampleCharacter",
                 data => new SampleCharacterMasterDataTable(data)
             ),
-            LoadAndRegisterAsync<Localization>("LocalizationMaster",
+            LoadAndRegisterAsync<LocalizationData>("LocalizationMaster",
                 data => new LocalizationMasterDataTable(data)
             )
         );

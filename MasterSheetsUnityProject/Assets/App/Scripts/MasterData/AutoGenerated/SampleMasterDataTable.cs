@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using MasterData.Runtime;
+using MasterSheetz.Runtime;
 
 namespace App.MasterData
 {
     [Serializable]
-    public class Sample : IMasterData
+    public class SampleData : IMasterData
     {
         [SerializeField] private int id;
         [SerializeField] private string name;
@@ -15,8 +15,8 @@ namespace App.MasterData
         public string Name => name;
     }
 
-    public partial class SampleMasterDataTable : MasterDataTable<Sample>
+    public partial class SampleMasterDataTable : MasterDataTable<SampleData>
     {
-        public SampleMasterDataTable(IEnumerable<Sample> masterData) : base(masterData) { }
+        public SampleMasterDataTable(IEnumerable<SampleData> masterData) : base(masterData) { }
     }
 }

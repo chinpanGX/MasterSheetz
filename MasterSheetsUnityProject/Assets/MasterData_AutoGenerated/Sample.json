@@ -1,1 +1,1 @@
-﻿{"fileName":"Sample","types":["int","string"],"columns":["id","name"]}
+﻿{"className":"Sample","types":["int","string"],"columns":["id","name"]}

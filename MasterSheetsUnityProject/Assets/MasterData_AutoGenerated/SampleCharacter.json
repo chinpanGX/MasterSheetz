@@ -1,1 +1,1 @@
-{"fileName":"SampleCharacter","types":["int","string","int","bool"],"columns":["id","name","type","playable"]}
+{"className":"SampleCharacter","types":["int","string","int","bool"],"columns":["id","name","type","playable"]}

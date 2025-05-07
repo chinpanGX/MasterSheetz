@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MasterData.Runtime
+namespace MasterSheetz.Runtime
 {
     public abstract class MasterDataTableBase
     {

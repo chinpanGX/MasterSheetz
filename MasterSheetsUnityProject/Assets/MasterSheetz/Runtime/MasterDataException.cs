@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MasterData.Runtime
+namespace MasterSheetz.Runtime
 {
     public class MasterDataException : Exception
     {

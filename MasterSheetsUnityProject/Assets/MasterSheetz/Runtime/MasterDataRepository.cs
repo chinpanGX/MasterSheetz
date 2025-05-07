@@ -2,7 +2,7 @@
 using System.Linq;
 using Cysharp.Threading.Tasks;
 
-namespace MasterData.Runtime
+namespace MasterSheetz.Runtime
 {
     public class MasterDataRepository : IMasterRepository
     {

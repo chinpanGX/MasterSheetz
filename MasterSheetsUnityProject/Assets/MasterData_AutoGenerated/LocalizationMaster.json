@@ -1,1 +1,1 @@
-{"fileName":"Localization","types":["int","string","string","string"],"columns":["id","key","jp","en"]}
+{"className":"Localization","types":["int","string","string","string"],"columns":["id","key","jp","en"]}

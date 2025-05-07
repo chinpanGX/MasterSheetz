@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-namespace MasterData.Runtime
+namespace MasterSheetz.Runtime
 {
     public abstract class MasterDataTextAssetLoaderBase
     {

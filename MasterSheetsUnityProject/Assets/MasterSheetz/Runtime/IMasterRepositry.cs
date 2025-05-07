@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace MasterData.Runtime
+namespace MasterSheetz.Runtime
 {
     public interface IMasterRepository
     {

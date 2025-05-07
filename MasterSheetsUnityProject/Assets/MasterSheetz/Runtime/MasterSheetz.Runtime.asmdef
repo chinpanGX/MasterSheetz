@@ -1,6 +1,6 @@
 {
-    "name": "MasterData.Runtime",
-    "rootNamespace": "MasterData.Runtime",
+    "name": "MasterSheetz.Runtime",
+    "rootNamespace": "MasterSheetz.Runtime",
     "references": [
         "GUID:c617af8a3eb70c64096d0a96098186e3",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
