@@ -18,13 +18,13 @@ namespace MasterData.Editor
             }
 
             var path = AssetDatabase.GUIDToAssetPath(guilds[0]);
-            var link = AssetDatabase.LoadAssetAtPath<GoogleDriveLinkAsset>(path).GoogleDriveLink;
+            var link = AssetDatabase.LoadAssetAtPath<MasterSheetzConfigAsset>(path).GoogleDriveLink;
             if (string.IsNullOrEmpty(link))
             {
                 EditorUtility.DisplayDialog("Error", "Link is not entered", "OK");
                 return;
             }
-            
+
             if (!link.StartsWith("https://drive.google.com"))
             {
                 EditorUtility.DisplayDialog("Error", "Link is not a Google Drive link", "OK");
