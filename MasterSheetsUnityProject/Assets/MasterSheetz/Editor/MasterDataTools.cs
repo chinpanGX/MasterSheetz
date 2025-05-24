@@ -32,5 +32,26 @@ namespace MasterData.Editor
             }
             Application.OpenURL(link);
         }
+
+        [MenuItem("Development Tools/MasterData/Open MasterData Folder", false, 101)]
+        public static void OpenMasterDataFolder()
+        {
+            var guilds = AssetDatabase.FindAssets("t:MasterSheetzConfigAsset");
+            if (guilds.Length <= 0)
+            {
+                EditorUtility.DisplayDialog("Error", "MasterSheetzConfigAsset not found", "OK");
+                return;
+            }
+
+            var path = AssetDatabase.GUIDToAssetPath(guilds[0]);
+            var config = AssetDatabase.LoadAssetAtPath<MasterSheetzConfigAsset>(path);
+            if (string.IsNullOrEmpty(config.MasterDataPath))
+            {
+                EditorUtility.DisplayDialog("Error", "MasterData path is not set", "OK");
+                return;
+            }
+
+            EditorUtility.RevealInFinder(config.MasterDataPath);
+        }
     }
 }
