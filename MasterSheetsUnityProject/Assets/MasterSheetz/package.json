@@ -1,6 +1,6 @@
 ﻿{
   "name": "com.chinpangx.mastersheetz",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "MasterSheetz",
   "description": "MasterSheetz is a Unity package for managing master data in JSON format. It provides a simple and efficient way to handle game data. Google Spreadsheet is used as the input tool for the master data.",
   "dependencies": {
