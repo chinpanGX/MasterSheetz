@@ -9,11 +9,10 @@ namespace MasterData.Editor
         [MenuItem("Development Tools/MasterData/Open Link GoogleDrive", false, 100)]
         public static void OpenMasterDataDrive()
         {
-            var guilds =
-                AssetDatabase.FindAssets("t:GoogleDriveLinkAsset");
+            var guilds = AssetDatabase.FindAssets("t:MasterSheetzConfigAsset");
             if (guilds.Length <= 0)
             {
-                EditorUtility.DisplayDialog("Error", "GoogleDriveLinkAsset not found", "OK");
+                EditorUtility.DisplayDialog("Error", "MasterSheetzConfigAsset not found", "OK");
                 return;
             }
 
